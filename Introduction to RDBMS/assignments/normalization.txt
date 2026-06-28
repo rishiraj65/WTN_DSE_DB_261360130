@@ -1,0 +1,85 @@
+Q.1 Observe the structures of a given EMPLOYEE table as below and suggest if this table can be further normalized EMPNO, ENAME, SAL, DEPTNO, DNAME, LOC Explain what normal form this table is and how you can make this into next normal form.
+
+Answer : The given table is in Second Normal Form (2NF) because:
+· The primary key is EMPNO.
+· All non-key attributes (ENAME, SAL, DEPTNO, DNAME, LOC) depend on EMPNO.
+· There are no repeating groups or partial dependencies.
+
+However, the table is not in Third Normal Form (3NF) because DNAME and LOC depend on DEPTNO, not directly on EMPNO.
+
+Functional Dependencies
+
+EMPNO → ENAME, SAL, DEPTNO DEPTNO → DNAME, LOC
+
+This creates a transitive dependency.
+
+EMPNO → DEPTNO → DNAME, LOC
+
+Convert into 3NF
+
+Split the table into two tables.
+EMPLOYEE Table :
+EMPNO	ENAME	SAL	DEPTNO
+DEPARTMENT Table : 
+DEPTNO	DNAME	LOC
+
+Q.3 Observe the structures of a give STUDENT table as below and suggest if this table can be further normalised ROLLNO, NAME, AGE, EXAM, MARKS, GRADE Explain what normal form this table is and how you can make this into next normal form.
+
+Answer : The table is in Second Normal Form (2NF).The primary key can be considered (ROLLNO, EXAM) because one student can appear in multiple exams.
+
+All attributes depend on the complete key.
+However,GRADE depends on MARKS, not on the primary key.
+
+Functional Dependency
+(ROLLNO, EXAM) → MARKS MARKS → GRADE
+
+Therefore,
+(ROLLNO, EXAM) → MARKS → GRADE
+This is a Transitive Dependency, so the table is not in 3NF.
+To convert the table into third Normal Form (3NF), split it into two tables:
+
+STUDENT Table : 
+
+ROLLNO
+NAME
+AGE
+
+RESULT Table :
+
+ROLLNO
+EXAM
+MARKS
+GRADE
+
+Q.3 Observe the structure of a given EMPLOYEE table and suggest what kind of problem this table has and how to solve the problem EMPNO, PROJECT_NO, NO_OF_DAYS, CUSTOMERNAME.
+
+Answer : In the above table EMPNO and PROJECT_NO both are together a composite primary key.
+The table has a Partial Dependency.
+
+Primary Key
+(EMPNO, PROJECT_NO)
+
+Functional Dependencies
+(EMPNO, PROJECT_NO) → NO_OF_DAYS PROJECT_NO → CUSTOMERNAME
+
+Since CUSTOMERNAME depends only on PROJECT_NO and not on the complete composite key, it violates Second Normal Form (2NF).
+
+This causes : 
+· Data redundancy
+· Update anomaly
+· Insert anomaly
+· Delete anomaly
+
+To remove the partial dependency and convert the table into Second Normal Form (2NF), divide it into two tables.
+
+EMPLOYEE_PROJECT Table : 
+EMPNO	
+PROJECT_NO	
+NO_OF_DAYS
+
+PROJECT Table :
+
+PROJECT_NO 
+CUSTOMERNAME
+
+
